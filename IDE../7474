@@ -1,1 +1,29 @@
-
+// Code to generate a down counter using two 7474 ICs and a 7447 IC with a seven-segment display// Pin connections for the 7474 ICs
+const int CLK1 = 2;   // Clock input for the first 7474 ICconst int CLK2 = 3;   // Clock input for the second 7474 IC
+const int D1 = 4;     // Data input for the first 7474 ICconst int D2 = 5;     // Data input for the second 7474 IC
+const int CLR1 = 6;   // Clear input for the first 7474 ICconst int CLR2 = 7;   // Clear input for the second 7474 IC
+// Pin connections for the 7447 ICconst int A = 8;      // Output A for the 7447 IC
+const int B = 9;      // Output B for the 7447 ICconst int C = 10;     // Output C for the 7447 IC
+const int D = 11;     // Output D for the 7447 ICconst int E = 12;     // Output E for the 7447 IC
+const int F = 13;     // Output F for the 7447 ICconst int G = 14;     // Output G for the 7447 IC
+void setup() {  // Set the pin modes  
+    pinMode(CLK1, OUTPUT);
+  pinMode(CLK2, OUTPUT);   pinMode(D1, OUTPUT);
+  pinMode(D2, OUTPUT);   pinMode(CLR1, OUTPUT);
+  pinMode(CLR2, OUTPUT);  pinMode(A, OUTPUT);
+  pinMode(B, OUTPUT);    pinMode(C, OUTPUT);
+  pinMode(D, OUTPUT);  pinMode(E, OUTPUT); 
+   pinMode(F, OUTPUT);  pinMode(G, OUTPUT);}
+void loop() {  // Display numbers from 99 to 0  
+    for (int i = 99; i >= 0; i--) {    // Convert the number to BCD    
+        int tens = i / 10;    int ones = i % 10;
+    // Set the data inputs for the 7474 ICs        digitalWrite(D1, tens & 1);
+    digitalWrite(D2, ones & 1);    // Clock the data into the 7474 ICs    
+        digitalWrite(CLK1, HIGH);    digitalWrite(CLK2, HIGH); 
+    digitalWrite(CLK1, LOW);    digitalWrite(CLK2, LOW);
+    // Display the BCD number on the seven-segment display            digitalWrite(A, !(ones & 1));
+    digitalWrite(B, !(tens & 2));      digitalWrite(C, !(tens & 4));
+    digitalWrite(D, !(tens & 8));     digitalWrite(E, !(tens & 16));
+    digitalWrite(F, !(tens & 32));    digitalWrite(G, !(tens & 64));
+    // Delay for a second    delay(1000); 
+        } }
