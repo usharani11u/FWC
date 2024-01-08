@@ -1,0 +1,23 @@
+#include <avr/io.h>
+//Declaring all variables as integers
+int X=1,Y=1;
+int Z;
+
+void disp_7447(int Z)
+{
+ 
+  digitalWrite(13, Z); 
+
+ }
+void setup() {
+    pinMode(13, OUTPUT);
+}
+
+void loop() {
+  
+ Z= x||!y
+
+  
+disp_7447(Z);
+   
+}
